@@ -33,7 +33,7 @@ call_user() # Submit the task and call the user when the task is unsolvable, or 
     return base_template + task_description
 
 def get_scrolling_exploration_prompts():
-    """支持滚动探索的prompts - 鼓励UI-TARS探索整个页面"""
+    
     base_template = """You are a GUI agent. You are given a task and your action history, with screenshots. You need to perform the next action to complete the task. 
 
 ## Output Format
@@ -76,7 +76,7 @@ call_user() # Submit the task and call the user when the task is unsolvable, or 
 
 
 def get_hybrid_exploration_prompts():
-    """混合策略prompts - 先深度探索，然后在目标区域精准选择"""
+    
     base_template = """You are a GUI agent. You are given a task and your action history, with screenshots. You need to perform the next action to complete the task. 
 
 ## Output Format
@@ -119,7 +119,7 @@ call_user() # Submit the task and call the user when the task is unsolvable, or 
 
 
 def get_deep_exploration_prompts():
-    """深度探索prompts - 强制要求滚动到页面底部再选择"""
+    
     base_template = """You are a GUI agent. You are given a task and your action history, with screenshots. You need to perform the next action to complete the task. 
 
 ## Output Format
@@ -162,7 +162,7 @@ call_user() # Submit the task and call the user when the task is unsolvable, or 
 
 
 def get_target_focused_prompts():
-    """目标导向prompts - 既鼓励探索又在找到好产品时果断选择"""
+    
     base_template = """You are a GUI agent. You are given a task and your action history, with screenshots. You need to perform the next action to complete the task. 
 
 ## Output Format
@@ -205,7 +205,7 @@ call_user() # Submit the task and call the user when the task is unsolvable, or 
 
 
 def get_bottom_seeking_prompts():
-    """底部探索prompts - 特别强调要找到页面底部的产品"""
+   
     base_template = """You are a GUI agent. You are given a task and your action history, with screenshots. You need to perform the next action to complete the task. 
 
 ## Output Format
@@ -248,7 +248,7 @@ call_user() # Submit the task and call the user when the task is unsolvable, or 
 
 
 def get_optimized_scenario_prompts():
-    """优化版本 - 鼓励充分滚动探索，提高成功率"""
+    
     base_template = """You are a GUI agent. You are given a task and your action history, with screenshots. You need to perform the next action to complete the task. 
 
 ## Output Format
@@ -501,7 +501,7 @@ call_user() # Submit the task and call the user when the task is unsolvable, or 
     }
 
 def get_single_selection_prompts():
-    """单选prompts - 强调从页面中选择一个元素"""
+    
     base_template = """You are a GUI agent. You are given a task and your action history, with screenshots. You need to perform the next action to complete the task. 
 
 ## Output Format
@@ -540,7 +540,7 @@ call_user() # Submit the task and call the user when the task is unsolvable, or 
     }
 
 def get_booking_prompt_candidates():
-    """Booking场景的防幻觉prompt候选"""
+    
     base_template = """You are a GUI agent. You are given a task and your action history, with screenshots. You need to perform the next action to complete the task. 
 
 ## Output Format
@@ -617,7 +617,7 @@ call_user() # Submit the task and call the user when the task is unsolvable, or 
     }
 
 def get_test_prompts_by_variant(variant_name: str):
-    """获取测试变体prompts - 用于解决Agent坐标准确性问题"""
+    
     try:
         from prompt_test_variants import get_test_variant_prompts
         return get_test_variant_prompts(variant_name)
@@ -629,7 +629,7 @@ def get_test_prompts_by_variant(variant_name: str):
         return get_optimized_scenario_prompts()
 
 def get_direct_action_prompts():
-    """强制行动prompts - 要求立即做出选择和点击"""
+    
     base_template = """You are a GUI agent. You are given a task and your action history, with screenshots. You need to perform the next action to complete the task. 
 
 ## CRITICAL INSTRUCTIONS
@@ -676,7 +676,7 @@ call_user() # Submit the task and call the user when the task is unsolvable, or 
     }
 
 def get_forced_selection_prompts():
-    """超强制选择prompts - 绝对要求立即行动"""
+    
     base_template = """You are a GUI agent tasked with making IMMEDIATE selections. 
 
 ## ABSOLUTE REQUIREMENTS:
@@ -708,7 +708,7 @@ hotkey(key='')
     }
 
 def get_scroll_only_prompts():
-    """获取仅滚动探索的prompt模板（禁止点击非产品元素）"""
+    
     return {
         'amazon': """You are helping a user find and select the BEST laptop from this Amazon product search page.
 
@@ -802,7 +802,7 @@ Find and select the MOST INTERESTING news article from this NPR page. IMPORTANT:
     }
 
 def get_smart_selection_prompts():
-    """获取智能选择prompt模板（平衡探索与选择）- 优化版本解决滚动过度和坐标映射问题"""  
+     
     return {
         'amazon': """You are a GUI agent helping users interact with Amazon search pages. You are given a task and your action history, with screenshots. You need to perform the next action to complete the task.
 
