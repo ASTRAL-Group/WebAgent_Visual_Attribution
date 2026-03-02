@@ -5,8 +5,8 @@
 # Requires: from repo root, data/ and pipeline/scenarios/<name>/ exist; config paths use data/<name>/.
 
 set -e
-REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-cd "$REPO_ROOT"
+SCRIPT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+cd "$SCRIPT_ROOT"
 SCENARIO="${1:-}"
 if [ -z "$SCENARIO" ]; then
   echo "Usage: ./pipeline/run.sh <scenario_name>"
