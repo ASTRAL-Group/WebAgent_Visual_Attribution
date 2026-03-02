@@ -1,0 +1,29 @@
+{
+  "input_directory": "data/npr/html",
+  "output_directory": "data/npr",
+  "target_text": "Federal judge rules the U.S. violated due process with Alien Enemies Act deportations",
+  "screenshot_settings": {
+    "format": "png",
+    "full_page": true,
+    "wait_time": 2,
+    "network_idle_wait": true
+  },
+  "coordinate_extraction": {
+    "method": "html_dom",
+    "confidence_threshold": 90,
+    "include_images": true,
+    "detection_strategies": [
+      "placement_container",
+      "card_size_variant",
+      "text_matching"
+    ]
+  },
+  "output_structure": {
+    "screenshots_dir": "screenshots",
+    "verifications_dir": "verifications",
+    "coordinates_file": "coordinates.json",
+    "results_file": "processing_results.json",
+    "summary_file": "processing_summary.md"
+  }
+}
+

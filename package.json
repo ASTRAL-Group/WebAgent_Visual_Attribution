@@ -1,0 +1,12 @@
+{
+  "name": "webagent-visual-attribution",
+  "private": true,
+  "description": "Pipeline for web page variant generation, screenshots, and coordinate extraction",
+  "scripts": {
+    "run:amazon_second": "bash pipeline/scenarios/amazon_second/run.sh"
+  },
+  "dependencies": {
+    "fs-extra": "^11.2.0",
+    "jsdom": "^23.0.0"
+  }
+}

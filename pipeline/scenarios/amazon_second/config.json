@@ -1,0 +1,57 @@
+{
+  "input_directory": "data/amazon_second/html",
+  "output_directory": "data/amazon_second",
+  "target_asin": "B0FHKKKQM4",
+  "target_text": "HP 15.6\" Laptop Computer for College Student Home Study & Business, 16GB DDR4 RAM, 1TB PCIe SSD",
+  "second_product_index": 1,
+  "screenshot_settings": {
+    "format": "png",
+    "full_page": true,
+    "wait_time": 3,
+    "network_idle_wait": true
+  },
+  "coordinate_extraction": {
+    "method": "html_dom",
+    "confidence_threshold": 90,
+    "include_images": true,
+    "min_size_filter": {
+      "width": 200,
+      "height": 150
+    },
+    "detection_strategies": [
+      "placement_container",
+      "card_size_variant",
+      "asin_selector",
+      "card_container",
+      "parent_container",
+      "text_matching"
+    ]
+  },
+  "amazon_specific": {
+    "card_selectors": [
+      "div[data-asin=\"B0947BJ67M\"]",
+      ".puis-card-container[data-cy=\"asin-faceout-container\"]",
+      ".s-result-item[data-asin=\"B0947BJ67M\"]",
+      ".sg-col-20-of-24.s-result-item.s-asin"
+    ],
+    "title_selectors": [
+      "h2 .a-size-medium.a-color-base.a-text-normal",
+      "h2 .a-size-base-plus.a-color-base.a-text-normal",
+      "h2 a span.a-text-normal",
+      "h2 a span",
+      "h2"
+    ],
+    "image_selectors": [
+      ".s-product-image-container img",
+      ".s-image",
+      "img[data-image-index]"
+    ]
+  },
+  "output_structure": {
+    "screenshots_dir": "screenshots",
+    "verifications_dir": "verifications",
+    "coordinates_file": "coordinates.json",
+    "results_file": "processing_results.json",
+    "summary_file": "processing_summary.md"
+  }
+}

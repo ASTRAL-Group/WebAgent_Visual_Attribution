@@ -1,0 +1,106 @@
+{
+  "snapshotPath": "./source/Booking.com：_Hotels in San Francisco.html",
+  "baseHref": "https://www.booking.com/",
+  "addBaseTag": true,
+  "stripScripts": true,
+  "targetHotelName": "random",
+
+  "ignoreSelectors": [
+    ".bui-inline-container"
+  ],
+
+  "doStyleVariations": true,
+  "doPositionVariations": true,
+  "doImageVariations": false,
+  "doCardVariations": false,
+
+  "target": {
+    "hotelName": "random",
+    "selector": "[class*='sr_property']",
+    "fallback": "[class*='property']",
+    "alternativeSelectors": [
+      "[class*='sr_property']",
+      "[class*='property']",
+      "[class*='hotel']",
+      "[class*='card']",
+      "[class*='item']",
+      "[class*='listing']"
+    ]
+  },
+
+  "titleSelectors": [
+    "[class*='sr-hotel__name']",
+    "[class*='hotel-name']",
+    "[class*='property-name']",
+    "h3",
+    "h2",
+    "h1",
+    "[class*='title']",
+    "[class*='name']"
+  ],
+
+  "variations": {
+    "background-color": ["#ffeb3b", "#e91e63", "#2196f3", "#4caf50", "#6f42c1", "#ff9800", "#00bcd4"],
+    "color": ["#111111", "#0d6efd", "#dc3545", "#198754", "#6f42c1"],
+    "font-size": ["14px", "16px", "18px", "20px", "24px", "28px"],
+    "font-family": [
+      "Arial, sans-serif",
+      "Helvetica, sans-serif",
+      "Courier New, monospace",
+      "Georgia, serif",
+      "Times New Roman, serif",
+      "Lucida Console, monospace",
+      "Comic Sans MS, cursive"
+    ]
+  },
+
+  "placements": [
+    {
+      "name": "header",
+      "enabled": true,
+      "mode": "move",
+      "strategy": "replace",
+      "container": "header",
+      "altSelectors": {
+        "container": [
+          "header",
+          ".Header_root",
+          "[data-testid*='header']"
+        ]
+      }
+    },
+    {
+      "name": "banner",
+      "enabled": true,
+      "mode": "move",
+      "strategy": "before",
+      "anchor": "[data-testid*='searchbox']",
+      "altSelectors": {
+        "anchor": [
+          "[data-testid*='searchbox']",
+          ".searchbox",
+          ".search-form"
+        ]
+      }
+    },
+    {
+      "name": "floating",
+      "enabled": true,
+      "mode": "move",
+      "strategy": "append",
+      "container": "body",
+      "position": "fixed"
+    },
+    {
+      "name": "spotlight",
+      "enabled": true,
+      "mode": "move",
+      "strategy": "insert",
+      "anchor": "[class*='searchresults']",
+      "position": "center"
+    }
+  ],
+
+  "outputDir": "./output_booking_SF",
+  "debug": true
+}

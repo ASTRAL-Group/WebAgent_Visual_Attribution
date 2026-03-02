@@ -1,0 +1,23 @@
+{
+  "input_directory": "data/ebay/html",
+  "output_directory": "data/ebay",
+  "target": "first_product_card",
+  "screenshot_settings": {
+    "format": "png",
+    "full_page": true,
+    "wait_time": 2,
+    "network_idle_wait": true
+  },
+  "coordinate_extraction": {
+    "method": "html_dom",
+    "confidence_threshold": 90,
+    "include_images": true
+  },
+  "output_structure": {
+    "screenshots_dir": "screenshots",
+    "verifications_dir": "verifications",
+    "coordinates_file": "coordinates.json",
+    "results_file": "processing_results.json",
+    "summary_file": "processing_summary.md"
+  }
+}
