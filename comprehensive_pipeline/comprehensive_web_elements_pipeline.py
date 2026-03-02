@@ -1,22 +1,9 @@
 #!/usr/bin/env python3
-"""
-完整的Web Elements影响测试Pipeline - 优化版
-测试5个scenarios中的web elements对UI-TARS模型的影响
-
-
-支持功能：
-1. 自动遍历所有scenarios和variants
-2. 生成截图和region分割 (优化尺寸)
-3. 使用rotating GPU进行推理
-4. 统计成功率和距离
-5. 分析语句中的广告内容
-6. 生成完整报告
-"""
 
 import sys
 import os
 
-# 设置PyTorch CUDA内存管理以避免碎片化问题 - 必须在导入torch之前设置
+
 os.environ['PYTORCH_CUDA_ALLOC_CONF'] = 'expandable_segments:True'
 
 import json
@@ -37,7 +24,7 @@ import traceback
 import subprocess
 import shutil
 
-# 添加路径
+
 sys.path.append('/data/kuaiyu/webarena')
 sys.path.append('/data/kuaiyu/UI-TARS')
 
@@ -48,19 +35,12 @@ from coordinate_target_manager import CoordinateTargetManager
 
 
 class ScrollingViewport:
-    """处理长截图的滚动视口管理"""
+    
     
     def __init__(self, full_screenshot_path: str, viewport_height: int = 1200, scroll_step: int = 600, 
                  viewport_width: int = 1280):
-        """
-        初始化滚动视口
         
-        Args:
-            full_screenshot_path: 完整截图路径
-            viewport_height: 视口高度(显示给UI-TARS的窗口高度)
-            scroll_step: 每次滚动的像素数
-            viewport_width: 视口宽度(显示给UI-TARS的窗口宽度，避免OOM)
-        """
+        
         from PIL import Image
         
         self.full_screenshot_path = full_screenshot_path
@@ -68,66 +48,59 @@ class ScrollingViewport:
         self.viewport_width = viewport_width
         self.scroll_step = scroll_step
         
-        # 加载完整截图
+        
         with Image.open(full_screenshot_path) as img:
             self.full_width, self.full_height = img.size
             self.full_image = img.copy()
         
-        # 计算缩放比例以适应UI-TARS安全尺寸
+        
         self.width_scale = min(1.0, viewport_width / self.full_width) if self.full_width > viewport_width else 1.0
         
-        # 当前滚动位置（基于原始尺寸）
+        
         self.current_y_offset = 0
         self.max_y_offset = max(0, self.full_height - self.viewport_height)
         
-        print(f"📱 初始化滚动视口: {self.full_width}x{self.full_height} -> 视口:{self.viewport_width}x{self.viewport_height}")
-        print(f"🔄 滚动范围: 0 - {self.max_y_offset}px, 步长: {self.scroll_step}px")
-        print(f"📏 宽度缩放比例: {self.width_scale:.3f} (避免UI-TARS OOM)")
+        print(f"Initialize Viewport: {self.full_width}x{self.full_height} -> 视口:{self.viewport_width}x{self.viewport_height}")
+        print(f" Scrolling range: 0 - {self.max_y_offset}px, 步长: {self.scroll_step}px")
+        print(f" Scaling Ratio: {self.width_scale:.3f} (避免UI-TARS OOM)")
     
     def get_current_view(self) -> str:
-        """获取当前视口的截图"""
+        
         from PIL import Image
         import tempfile
         
-        # 计算当前视口边界
+        
         y_start = self.current_y_offset
         y_end = min(self.current_y_offset + self.viewport_height, self.full_height)
         
-        # 如果视口超出边界，调整到底部
+        
         if y_end > self.full_height:
             y_end = self.full_height
             y_start = max(0, y_end - self.viewport_height)
             self.current_y_offset = y_start
         
-        # 裁剪当前视图
+        
         current_view = self.full_image.crop((0, y_start, self.full_width, y_end))
         
-        # 如果裁剪后的高度小于视口高度，创建一个填充的图像
+        
         if current_view.height < self.viewport_height:
             padded_view = Image.new('RGB', (self.full_width, self.viewport_height), color='white')
             padded_view.paste(current_view, (0, 0))
             current_view = padded_view
         
-        # 🎯 应用宽度缩放以避免UI-TARS OOM
-        # if self.width_scale < 1.0:
-        #     # 计算缩放后的尺寸
-        #     new_width = int(current_view.width * self.width_scale)
-        #     new_height = current_view.height  # 高度已经被限制在viewport_height内
-            
-        #     # 进行缩放
-        #     current_view = current_view.resize((new_width, new_height), Image.Resampling.LANCZOS)
-        #     print(f"🔧 视口缩放: {self.full_width}x{current_view.height} -> {new_width}x{new_height} (避免OOM)")
         
-        # 保存当前视图
+        
+        
+        
         temp_file = tempfile.NamedTemporaryFile(delete=False, suffix='.png', prefix='viewport_')
         current_view.save(temp_file.name)
         temp_file.close()
         
-        print(f"当前视口: y={y_start}-{y_end} ({current_view.width}x{current_view.height})")
+        print(f"Current Viewport: y={y_start}-{y_end} ({current_view.width}x{current_view.height})")
         return temp_file.name
     
     def scroll_down(self) -> bool:
-        """向下滚动，返回是否成功滚动"""
+        
         if self.current_y_offset >= self.max_y_offset:
             print(f"📱 已到达底部，无法继续滚动 (当前位置: {self.current_y_offset})")
             return False
