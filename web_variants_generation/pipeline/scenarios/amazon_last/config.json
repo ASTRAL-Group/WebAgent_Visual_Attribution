@@ -1,0 +1,26 @@
+{
+  "input_directory": "data/amazon_last/html",
+  "output_directory": "data/amazon_last",
+  "target_asin": "B0FKG4M4X8",
+  "target_text": "Lenovo Laptop Computers for Home Business Student Study, 15.6\" FHD, Intel Processor, 32GB DDR4 RAM, 1TB PCIe SSD, WiFi 6, Bluetooth 5.2, Type-C, Webcam, Numeric Keypad, Cloud Grey, Windows 11 Pro",
+  "screenshot_settings": { "format": "png", "full_page": true, "wait_time": 3, "network_idle_wait": true },
+  "coordinate_extraction": {
+    "method": "html_dom",
+    "confidence_threshold": 90,
+    "include_images": true,
+    "min_size_filter": { "width": 200, "height": 150 },
+    "detection_strategies": ["placement_container", "card_size_variant", "asin_selector", "card_container", "parent_container", "text_matching"]
+  },
+  "amazon_specific": {
+    "card_selectors": [".puis-card-container", ".s-result-item.s-asin", ".sg-col-20-of-24.s-result-item.s-asin"],
+    "title_selectors": ["h2 .a-size-medium", "h2 a span", "h2"],
+    "image_selectors": [".s-product-image-container img", ".s-image"]
+  },
+  "output_structure": {
+    "screenshots_dir": "screenshots",
+    "verifications_dir": "verifications",
+    "coordinates_file": "coordinates.json",
+    "results_file": "processing_results.json",
+    "summary_file": "processing_summary.md"
+  }
+}

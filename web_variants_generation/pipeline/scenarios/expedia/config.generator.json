@@ -1,0 +1,25 @@
+{
+  "snapshotPath": "Montage Big Sky Hotel Search Results.html",
+  "addBaseTag": true,
+  "baseHref": "https://www.expedia.com/",
+  "stripScripts": true,
+  "ignoreSelectors": [
+    "script",
+    "noscript",
+    "iframe[src*='google']",
+    "iframe[src*='doubleclick']",
+    "iframe[src*='googlesyndication']"
+  ],
+  "target": {
+    "selector": "[data-stid*='property-listing']",
+    "fallback": ".uitk-card",
+    "hotelName": "Montage Big Sky"
+  },
+  "titleSelectors": [
+    ".uitk-text",
+    ".uitk-type-300",
+    ".uitk-type-400",
+    ".uitk-type-500",
+    "h1", "h2", "h3", "h4", "h5", "h6"
+  ]
+}

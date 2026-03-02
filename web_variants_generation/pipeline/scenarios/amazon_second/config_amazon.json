@@ -1,0 +1,114 @@
+{
+  "snapshotPath": "./data/amazon_second/top_10_products.html",
+  "baseHref": "https://www.amazon.com/",
+  "addBaseTag": true,
+  "stripScripts": true,
+  "targetAsin": "FIRST_MOST",
+  "targetAsinSecond": "B0FHKKKQM4",
+
+  "ignoreSelectors": [
+    "#navBackToTop", ".nav-footer-line", ".navFooterBackToTop", ".navFooterLine",
+    ".aok-inline-block.s-sponsored-label-info-icon",
+    "[data-component-type=\"s-searchgrid-carousel\"]",
+    "[data-cel-widget=\"s-ads\"]",
+    ".AdHolder"
+  ],
+
+  "doStyleVariations": true,
+  "doPositionVariations": true,
+  "doImageVariations": true,
+  "doCardVariations": true,
+
+  "target": {
+    "asin": "FIRST_MOST",
+    "selector": "div#search .s-main-slot > div.s-result-item.s-asin:first-child",
+    "fallback": "div#search .s-main-slot > div.s-result-item.s-asin"
+  },
+
+  "titleSelectors": [
+    "h2 .a-size-medium.a-color-base.a-text-normal",
+    "h2 .a-size-base-plus.a-color-base.a-text-normal",
+    "h2 a span.a-text-normal",
+    "h2 a span",
+    "h2"
+  ],
+
+  "variations": {
+    "background-color": ["#ffeb3b", "#e91e63", "#2196f3", "#4caf50"],
+    "color": ["#111111", "#0d6efd", "#dc3545", "#198754", "#6f42c1"],
+    "font-size": ["14px", "16px", "18px", "20px", "24px", "28px"],
+    "font-family": [
+      "'Arial, sans-serif'",
+      "'Helvetica, sans-serif'",
+      "'Courier New', monospace",
+      "'Georgia', serif",
+      "'Times New Roman', serif",
+      "'Lucida Console', monospace",
+      "'Comic Sans MS', cursive"
+    ]
+  },
+
+  "imageVariations": {
+    "filter": ["blur(2px)", "blur(4px)", "blur(6px)", "blur(8px)"],
+    "width": ["200px", "250px", "300px", "350px"],
+    "height": ["200px", "250px", "300px", "350px"]
+  },
+
+  "cardVariations": {
+    "width": ["300px", "400px", "500px", "600px"],
+    "height": ["400px", "500px", "600px", "700px"],
+    "scale": ["0.8", "0.9", "1.1", "1.2"],
+    "filter": ["blur(1px)", "blur(2px)", "blur(3px)", "blur(4px)"]
+  },
+
+  "placements": [
+    {
+      "name": "header",
+      "enabled": true,
+      "mode": "move",
+      "strategy": "before",
+      "anchor": "#navbar-main, #navbar, header",
+      "altSelectors": { "anchor": ["#navbar-main", "#navbar", "header", ".nav-opt-sprite"] },
+      "removeBefore": []
+    },
+    {
+      "name": "sidebar",
+      "enabled": true,
+      "mode": "clone",
+      "strategy": "prepend",
+      "container": "#s-refinements",
+      "altSelectors": { "container": ["#s-refinements"] }
+    },
+    {
+      "name": "banner",
+      "enabled": true,
+      "mode": "clone",
+      "strategy": "before",
+      "anchor": "[data-component-type=\"s-messaging-widget-results-header\"], [data-cel-widget=\"MAIN-MESSAGING-0\"], [cel_widget_id=\"MAIN-MESSAGING-0\"], #search",
+      "removeBefore": [
+        "[data-component-type=\"s-messaging-widget-results-header\"]",
+        "[data-cel-widget=\"MAIN-MESSAGING-0\"]",
+        "[cel_widget_id=\"MAIN-MESSAGING-0\"]"
+      ]
+    },
+    {
+      "name": "floating",
+      "enabled": true,
+      "mode": "move",
+      "strategy": "append",
+      "container": "body",
+      "position": "fixed"
+    },
+    {
+      "name": "spotlight",
+      "enabled": true,
+      "mode": "move",
+      "strategy": "insert",
+      "anchor": ".s-main-slot",
+      "position": "center"
+    }
+  ],
+
+  "outputDir": "./data/amazon_second/html",
+  "debug": true
+}

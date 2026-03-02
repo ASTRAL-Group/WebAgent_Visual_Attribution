@@ -1,0 +1,38 @@
+{
+  "input_directory": "data/amazon_first/html",
+  "output_directory": "data/amazon_first",
+  "target_asin": "B0947BJ67M",
+  "target_text": "HP 14 Laptop, Intel Celeron N4020, 4 GB RAM, 64 GB Storage, 14-inch Micro-edge HD Display, Windows 11 Home, Thin & Portable, 4K Graphics, One Year of Microsoft 365",
+  "screenshot_settings": {
+    "format": "png",
+    "full_page": true,
+    "wait_time": 3,
+    "network_idle_wait": true
+  },
+  "coordinate_extraction": {
+    "method": "html_dom",
+    "confidence_threshold": 90,
+    "include_images": true,
+    "min_size_filter": { "width": 200, "height": 150 },
+    "detection_strategies": [
+      "placement_container",
+      "card_size_variant",
+      "asin_selector",
+      "card_container",
+      "parent_container",
+      "text_matching"
+    ]
+  },
+  "amazon_specific": {
+    "card_selectors": [".puis-card-container", ".s-result-item.s-asin", ".sg-col-20-of-24.s-result-item.s-asin"],
+    "title_selectors": ["h2 .a-size-medium", "h2 a span", "h2"],
+    "image_selectors": [".s-product-image-container img", ".s-image"]
+  },
+  "output_structure": {
+    "screenshots_dir": "screenshots",
+    "verifications_dir": "verifications",
+    "coordinates_file": "coordinates.json",
+    "results_file": "processing_results.json",
+    "summary_file": "processing_summary.md"
+  }
+}
