@@ -7,7 +7,7 @@ CONFIG="$REPO_ROOT/$SCENARIO_DIR/config.json"
 SHARED="web_variants_generation/pipeline/shared"
 mkdir -p web_variants_generation/data/booking/html web_variants_generation/data/booking/screenshots web_variants_generation/data/booking/verifications
 
-SNAPSHOT="$SCENARIO_DIR/source/Booking.com：_Hotels in San Francisco.html"
+SNAPSHOT="$REPO_ROOT/$SCENARIO_DIR/source/top_10_hotels.html"
 echo "Step 1: Generate variation HTML (first hotel + positions: header, banner, spotlight, sidebar)"
 node "$SCENARIO_DIR/generate_variations.js" \
   --snapshot "$SNAPSHOT" \

@@ -1,5 +1,5 @@
 {
-  "snapshotPath": "./data/amazon_second/top_10_products.html",
+  "snapshotPath": "source/top_10_products.html",
   "baseHref": "https://www.amazon.com/",
   "addBaseTag": true,
   "stripScripts": true,

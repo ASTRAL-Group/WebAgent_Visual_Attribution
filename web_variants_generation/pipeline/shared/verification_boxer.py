@@ -191,9 +191,10 @@ class VerificationBoxer:
 
         for screenshot_file in tqdm(screenshot_files, desc="Verifications"):
             html_filename = screenshot_file.stem + ".html"
-            coordinates = coordinates_data.get(html_filename)
+            # Support both key formats: "original.html" (Amazon) and "original" (Booking)
+            coordinates = coordinates_data.get(html_filename) or coordinates_data.get(screenshot_file.stem)
             if not coordinates:
-                self.logger.warning(f"No coordinates for {html_filename}")
+                self.logger.warning(f"No coordinates for {html_filename} or {screenshot_file.stem}")
                 results["failed"] += 1
                 results["errors"].append(
                     {"screenshot_file": screenshot_file.name, "error": "No coordinates found"}

@@ -1,5 +1,5 @@
 {
-  "snapshotPath": "source/Montage Big Sky Hotel Search Results.html",
+  "snapshotPath": "source/top_10_hotels_expedia.html",
   "addBaseTag": true,
   "baseHref": "https://www.expedia.com/",
   "stripScripts": true,
@@ -27,8 +27,8 @@
     "h5",
     "h6"
   ],
-  "input_directory": "data/expedia/html",
-  "output_directory": "data/expedia",
+  "input_directory": "web_variants_generation/data/expedia/html",
+  "output_directory": "web_variants_generation/data/expedia",
   "target_text": "Montage Big Sky",
   "screenshot_settings": {
     "format": "png",

@@ -10,7 +10,7 @@ SHARED="web_variants_generation/pipeline/shared"
 
 mkdir -p web_variants_generation/data/expedia/html web_variants_generation/data/expedia/screenshots web_variants_generation/data/expedia/verifications
 
-SNAPSHOT="$SCENARIO_DIR/source/Montage Big Sky Hotel Search Results.html"
+SNAPSHOT="$REPO_ROOT/$SCENARIO_DIR/source/top_10_hotels_expedia.html"
 
 echo "Step 1: Generate Expedia HTML variants (style + position/order/size/clarity)"
 node "$SCENARIO_DIR/generate_variations.js" \

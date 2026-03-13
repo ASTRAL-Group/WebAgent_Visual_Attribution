@@ -1,6 +1,6 @@
 {
-  "input_directory": "data/npr/html",
-  "output_directory": "data/npr",
+  "input_directory": "web_variants_generation/data/npr/html",
+  "output_directory": "web_variants_generation/data/npr",
   "target_text": "Federal judge rules the U.S. violated due process with Alien Enemies Act deportations",
   "screenshot_settings": {
     "format": "png",

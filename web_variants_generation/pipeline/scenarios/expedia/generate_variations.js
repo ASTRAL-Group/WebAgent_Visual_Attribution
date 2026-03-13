@@ -45,7 +45,7 @@ function runNodeScript(scriptName, extraArgs) {
   const snapshotRel =
     args.snapshot ||
     cfg.snapshotPath ||
-    'source/Montage Big Sky Hotel Search Results.html';
+    'source/top_10_hotels_expedia.html';
   const snapshotPath = path.resolve(__dirname, snapshotRel);
 
   if (!fs.existsSync(snapshotPath)) {
