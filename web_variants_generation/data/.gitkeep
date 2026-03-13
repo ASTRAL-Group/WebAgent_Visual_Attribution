@@ -1,0 +1,2 @@
+# This directory holds pipeline output (HTML, screenshots, coordinates, verifications).
+# Run a scenario to populate it, e.g. bash web_variants_generation/pipeline/run.sh amazon_first

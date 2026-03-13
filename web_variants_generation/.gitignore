@@ -1,5 +1,6 @@
-# Generated data (run pipeline to populate)
-data/
+# Generated data (run pipeline to populate); keep data/ with .gitkeep so dir exists in repo
+data/*
+!data/.gitkeep
 
 # Python
 __pycache__/

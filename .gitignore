@@ -1,3 +1,5 @@
 # Generated pipeline output (do not commit; run pipeline to populate)
-data/
-web_variants_generation/data/
+/data/
+# Ignore contents of web_variants_generation/data/ but keep the directory (see .gitkeep)
+web_variants_generation/data/*
+!web_variants_generation/data/.gitkeep
