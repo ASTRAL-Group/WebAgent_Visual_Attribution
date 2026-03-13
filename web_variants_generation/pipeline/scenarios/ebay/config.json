@@ -1,6 +1,6 @@
 {
-  "input_directory": "data/ebay/html",
-  "output_directory": "data/ebay",
+  "input_directory": "web_variants_generation/data/ebay/html",
+  "output_directory": "web_variants_generation/data/ebay",
   "target": "first_product_card",
   "screenshot_settings": {
     "format": "png",

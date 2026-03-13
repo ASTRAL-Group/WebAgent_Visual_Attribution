@@ -1,6 +1,6 @@
 {
-  "input_directory": "data/amazon_first/html",
-  "output_directory": "data/amazon_first",
+  "input_directory": "web_variants_generation/data/amazon_first/html",
+  "output_directory": "web_variants_generation/data/amazon_first",
   "target_asin": "B0947BJ67M",
   "target_text": "HP 14 Laptop, Intel Celeron N4020, 4 GB RAM, 64 GB Storage, 14-inch Micro-edge HD Display, Windows 11 Home, Thin & Portable, 4K Graphics, One Year of Microsoft 365",
   "screenshot_settings": {

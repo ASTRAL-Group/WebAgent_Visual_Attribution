@@ -1,6 +1,6 @@
 {
-  "input_directory": "data/booking/html",
-  "output_directory": "data/booking",
+  "input_directory": "web_variants_generation/data/booking/html",
+  "output_directory": "web_variants_generation/data/booking",
   "target_text": "Holiday Inn San Francisco - Golden Gateway",
   "screenshot_settings": {
     "format": "png",

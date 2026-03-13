@@ -1,5 +1,5 @@
 {
-  "snapshotPath": "./source/Booking.com：_Hotels in San Francisco.html",
+  "snapshotPath": "source/top_10_hotels.html",
   "baseHref": "https://www.booking.com/",
   "addBaseTag": true,
   "stripScripts": true,
