@@ -3,3 +3,11 @@
 # Ignore contents of web_variants_generation/data/ but keep the directory (see .gitkeep)
 web_variants_generation/data/*
 !web_variants_generation/data/.gitkeep
+
+# Node dependencies
+node_modules/
+web_variants_generation/node_modules/
+
+# Python virtual environments
+.venv/
+venv/

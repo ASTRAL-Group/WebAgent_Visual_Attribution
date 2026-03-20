@@ -13,11 +13,31 @@ Pipeline for generating web page variants (HTML), screenshots, and target-elemen
 
 1. **Python 3.8+** with pip.
 2. **Node.js** (for running the JS variation generators).
-3. Install Python dependencies and Playwright browsers:
+3. Install Python dependencies, Node dependencies, and Playwright browsers:
 
 ```bash
+# If node/npm is missing, install Node.js first (example with nvm):
+curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+nvm install --lts && nvm use --lts
+
 pip install -r requirements.txt
+npm install
 playwright install chromium
+```
+
+Optional (recommended) Python setup with `uv`:
+
+```bash
+# Install uv (if missing)
+curl -LsSf https://astral.sh/uv/install.sh | sh
+source "$HOME/.local/bin/env"
+
+uv venv .venv
+source .venv/bin/activate
+uv pip install -r requirements.txt
+npm install
+uv run playwright install chromium
 ```
 
 ## Running a scenario
@@ -48,6 +68,24 @@ Each scenario has its own folder under `web_variants_generation/pipeline/scenari
 3. Results appear under `web_variants_generation/data/<name>/`: `screenshots/`, `coordinates.json`, `verifications/`.
 
 Config paths in each scenario’s `config.json` still use `data/<name>/` relative to the `web_variants_generation` folder so that generated artifacts stay in one place.
+
+## Run all scenarios in one command
+
+From the repository root:
+
+```bash
+bash web_variants_generation/pipeline/run_all.sh
+```
+
+Useful options:
+
+```bash
+# Keep running remaining scenarios even if one fails
+bash web_variants_generation/pipeline/run_all.sh --continue-on-error
+
+# Run only selected scenarios
+bash web_variants_generation/pipeline/run_all.sh --scenarios "amazon_first booking npr"
+```
 
 ## Scenarios
 

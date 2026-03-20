@@ -47,9 +47,30 @@ Examples: `amazon_first`, `amazon_second`, `booking`, `npr`, `expedia`, `ebay`.
 **Requirements:** Python 3.8+, Node.js, Playwright. One-time setup:
 
 ```bash
+# If node/npm is missing, install Node.js first (example with nvm):
+curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+export NVM_DIR="$HOME/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+nvm install --lts && nvm use --lts
+
 cd web_variants_generation
 pip install -r requirements.txt
+npm install
 playwright install chromium
+```
+
+Optional (recommended) Python setup with `uv`:
+
+```bash
+# Install uv (if missing)
+curl -LsSf https://astral.sh/uv/install.sh | sh
+source "$HOME/.local/bin/env"
+
+cd web_variants_generation
+uv venv .venv
+source .venv/bin/activate
+uv pip install -r requirements.txt
+npm install
+uv run playwright install chromium
 ```
 
 Results appear under `web_variants_generation/data/<scenario_name>/` (html, screenshots, coordinates, verifications). See [web_variants_generation/README.md](web_variants_generation/README.md) for scenario list and step-by-step flow.
