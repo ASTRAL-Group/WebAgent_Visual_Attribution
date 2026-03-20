@@ -20,7 +20,6 @@ Each part has its own README with detailed setup, options, and troubleshooting.
 Generated outputs (HTML, screenshots, `coordinates.json`, verification images) go under **`web_variants_generation/data/`**.
 
 - **You do not need to create this folder.** The repo includes an empty `web_variants_generation/data/` directory (with a `.gitkeep` placeholder). When you run a scenario, the pipeline creates the needed subfolders (e.g. `data/amazon_first/html`, `data/amazon_first/screenshots`) automatically.
-- **Generated files are not committed.** Only the empty directory is in version control; contents are gitignored so the repo stays small. Re-run the pipeline anytime to regenerate.
 
 If you prefer to create the output root yourself before the first run, you can:
 
@@ -43,6 +42,22 @@ bash web_variants_generation/pipeline/run.sh <scenario_name>
 ```
 
 Examples: `amazon_first`, `amazon_second`, `booking`, `npr`, `expedia`, `ebay`.
+
+Run all scenarios in one command:
+
+```bash
+bash web_variants_generation/pipeline/run_all.sh
+```
+
+Useful options:
+
+```bash
+# Keep running remaining scenarios even if one fails
+bash web_variants_generation/pipeline/run_all.sh --continue-on-error
+
+# Run only selected scenarios
+bash web_variants_generation/pipeline/run_all.sh --scenarios "amazon_first booking npr"
+```
 
 **Requirements:** Python 3.8+, Node.js, Playwright. One-time setup:
 
