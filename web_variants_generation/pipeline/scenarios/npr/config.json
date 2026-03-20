@@ -12,6 +12,10 @@
     "method": "html_dom",
     "confidence_threshold": 90,
     "include_images": true,
+    "min_size_filter": {
+      "width": 200,
+      "height": 150
+    },
     "detection_strategies": [
       "placement_container",
       "card_size_variant",

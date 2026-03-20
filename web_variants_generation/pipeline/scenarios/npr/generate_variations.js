@@ -676,8 +676,12 @@ function createCardSizeVariations(baseHtml, cardSelector) {
   const specificCardSelector = `article[data-target-card="true"]`;
   console.log(`🎯 Using specific selector: ${specificCardSelector}`);
 
-  // Configure output directory (data/npr/html under repo root)
-  const outputDir = path.resolve(process.cwd(), 'data/npr/html');
+  // Configure output directory, prefer --output from CLI.
+  const outputArgIndex = process.argv.indexOf('--output');
+  const outputDirRaw = outputArgIndex !== -1 ? process.argv[outputArgIndex + 1] : null;
+  const outputDir = outputDirRaw
+    ? path.resolve(process.cwd(), outputDirRaw)
+    : path.resolve(process.cwd(), 'web_variants_generation/data/npr/html');
   fse.ensureDirSync(outputDir);
 
   // Add forced styles to the base page

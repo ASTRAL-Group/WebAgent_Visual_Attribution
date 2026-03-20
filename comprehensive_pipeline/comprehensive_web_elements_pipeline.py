@@ -464,9 +464,9 @@ class ComprehensiveWebElementsPipeline:
         self.scenarios = {
             'amazon': {
                 #'path': '/data/senarios/amazon/output_amazon_unified',
-                'path': '/data/scenarios_short/amazon_middle/output_amazon_middle',
+                'path': '/data/scenarios_short/amazon_second/output_amazon_second',
                 #'coordinates_path': '/data/senarios/amazon/amazon_html_to_screenshots_coords/coordinates.json',
-                'coordinates_path': '/data/scenarios_short/amazon_middle/amazon_deployment_package/output/coordinates.json',
+                'coordinates_path': '/data/scenarios_short/amazon_second/amazon_deployment_package/output/coordinates.json',
                 'target_region_index': 2,
                 # 'target_product_names': [
                 #     'HP 15.6 inch Laptop, HD Touchscreen Display, AMD Ryzen 3 7320U, 8 GB RAM, 128 GB SSD, AMD Radeon Graphics, Windows 11 Home in S Mode, Natural Silver, 15- fc0099nr'

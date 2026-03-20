@@ -1,5 +1,4 @@
 const fs = require('fs');
-const fse = require('fs-extra');
 const path = require('path');
 const { spawnSync } = require('child_process');
 
@@ -24,11 +23,12 @@ function parseArgs(argv) {
   return args;
 }
 
-function runNodeScript(scriptName, extraArgs) {
+function runNodeScript(scriptName, extraArgs, extraEnv = {}) {
   const scriptPath = path.resolve(__dirname, scriptName);
   const result = spawnSync(process.execPath, [scriptPath, ...extraArgs], {
     cwd: __dirname,
-    stdio: 'inherit'
+    stdio: 'inherit',
+    env: { ...process.env, ...extraEnv }
   });
 
   if (result.status !== 0) {
@@ -57,35 +57,21 @@ function runNodeScript(scriptName, extraArgs) {
   const outputDirArg = args.output || 'data/expedia/html';
   const outputDir = path.resolve(process.cwd(), outputDirArg);
 
-  // Temporary directory where the original scripts write their HTML
-  const tempOutputDir = path.resolve(__dirname, 'output_expedia2_unified_complete');
-
   console.log('🧩 Running Expedia variants - part 1 (style variants)...');
   runNodeScript('generate_unified_variations_part1.js', [
     '--snapshot',
     snapshotPath
-  ]);
+  ], { EXPEDIA_OUTPUT_DIR: outputDir });
 
   console.log('🧩 Running Expedia variants - part 2 (position/order/size/clarity)...');
   runNodeScript('generate_unified_variations_part2.js', [
     '--snapshot',
     snapshotPath
-  ]);
+  ], { EXPEDIA_OUTPUT_DIR: outputDir });
 
-  // Copy all generated HTML files into the unified output directory
-  fse.ensureDirSync(outputDir);
-  if (!fs.existsSync(tempOutputDir)) {
-    console.error('❌ Expected temporary output directory not found:', tempOutputDir);
-    process.exit(1);
-  }
-
-  const files = fs.readdirSync(tempOutputDir).filter(f => f.toLowerCase().endsWith('.html'));
-  files.forEach(file => {
-    const src = path.join(tempOutputDir, file);
-    const dest = path.join(outputDir, file);
-    fse.copyFileSync(src, dest);
-  });
-
-  console.log(`🎉 Expedia variants generation completed. Copied ${files.length} HTML files to: ${outputDir}`);
+  const files = fs.existsSync(outputDir)
+    ? fs.readdirSync(outputDir).filter(f => f.toLowerCase().endsWith('.html'))
+    : [];
+  console.log(`🎉 Expedia variants generation completed. Generated ${files.length} HTML files in: ${outputDir}`);
 })();
 

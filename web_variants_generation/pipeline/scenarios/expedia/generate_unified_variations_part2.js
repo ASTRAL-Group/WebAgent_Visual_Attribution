@@ -1192,8 +1192,10 @@ function createCardOrderVariations(baseHtml, cfg, targetHotelName) {
 
   console.log(`🎯 Target hotel: ${targetHotelName}, card index: ${cardIndex}`);
 
-  // Configure output directory
-  const outputDir = path.resolve(__dirname, 'output_expedia2_unified_complete');
+  // Configure output directory (prefer EXPEDIA_OUTPUT_DIR passed by wrapper script)
+  const outputDir = process.env.EXPEDIA_OUTPUT_DIR
+    ? path.resolve(process.env.EXPEDIA_OUTPUT_DIR)
+    : path.resolve(__dirname, 'output_expedia2_unified_complete');
   fse.ensureDirSync(outputDir);
 
   // Apply forced styles to base page

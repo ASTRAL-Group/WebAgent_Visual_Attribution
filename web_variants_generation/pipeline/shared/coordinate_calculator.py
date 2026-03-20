@@ -113,7 +113,8 @@ class CoordinateCalculator:
     def detect_target_element(self, page, html_file_path: str) -> Optional[Dict]:
         """Multi-stage detection to avoid 1x1 pixel results; handles position/order variants."""
         strategies = self.config["coordinate_extraction"]["detection_strategies"]
-        min_size = self.config["coordinate_extraction"]["min_size_filter"]
+        coordinate_cfg = self.config.get("coordinate_extraction", {})
+        min_size = coordinate_cfg.get("min_size_filter", {"width": 200, "height": 150})
         html_filename = Path(html_file_path).name
         is_position_variant = "position_" in html_filename
         is_order_variant = html_filename.startswith("order_")
@@ -141,6 +142,12 @@ class CoordinateCalculator:
             self.logger.info("Product name match succeeded")
             return coordinates
 
+        # Generic text-based fallback for non-Amazon scenarios (e.g., NPR/Expedia)
+        coordinates = self.detect_by_target_text_generic(page, is_position_variant, html_filename)
+        if coordinates and self.validate_coordinates(coordinates, min_size):
+            self.logger.info("target_text_generic succeeded")
+            return coordinates
+
         for strategy in strategies:
             self.logger.info(f"Trying strategy: {strategy}")
             if strategy == "asin_selector":
@@ -162,6 +169,129 @@ class CoordinateCalculator:
                 return coordinates
             self.logger.info(f"Strategy {strategy} failed or invalid coordinates")
         return None
+
+    def detect_by_target_text_generic(self, page, is_position_variant: bool, html_filename: str) -> Optional[Dict]:
+        """
+        Generic detector for scenarios that do not expose Amazon-style identifiers.
+        Finds elements containing target_text and scores nearby containers by card-like shape/classes.
+        """
+        if not self.target_text:
+            return None
+        try:
+            result = page.evaluate("""
+                ({ targetText, isPositionVariant }) => {
+                    const text = (targetText || '').trim().toLowerCase();
+                    if (!text) return null;
+
+                    const placementIds = new Set([
+                        'webarena-placement-header',
+                        'webarena-placement-sidebar',
+                        'webarena-placement-floating',
+                        'webarena-placement-spotlight',
+                        'webarena-placement-banner',
+                        'npr-placement-header',
+                        'npr-placement-banner'
+                    ]);
+
+                    const cardKeywords = [
+                        'card', 'listing', 'property', 'hotel', 'article', 'bucketwrap',
+                        'promocard', 'story', 'result', 'uitk', 'content'
+                    ];
+
+                    const allNodes = Array.from(document.querySelectorAll('*'));
+                    const textNodes = allNodes.filter(el => {
+                        const content = (el.textContent || '').trim().toLowerCase();
+                        if (!content) return false;
+                        if (!content.includes(text)) return false;
+                        const tag = el.tagName.toLowerCase();
+                        return tag !== 'html' && tag !== 'body';
+                    });
+
+                    if (!textNodes.length) return null;
+
+                    let best = null;
+                    let bestScore = -1;
+
+                    const scoreNode = (node) => {
+                        if (!node) return { score: -1, rect: null, inPlacement: false };
+                        const rect = node.getBoundingClientRect();
+                        if (!rect || rect.width <= 0 || rect.height <= 0) {
+                            return { score: -1, rect: null, inPlacement: false };
+                        }
+
+                        // Ignore full-page wrappers and tiny fragments
+                        if (rect.width > 1800 || rect.height > 3000 || rect.width < 80 || rect.height < 60) {
+                            return { score: -1, rect: null, inPlacement: false };
+                        }
+
+                        const cls = (node.className || '').toString().toLowerCase();
+                        const id = (node.id || '').toLowerCase();
+                        const tag = node.tagName.toLowerCase();
+                        let score = 0;
+
+                        if (['article', 'section', 'li', 'div'].includes(tag)) score += 8;
+                        if (cardKeywords.some(k => cls.includes(k) || id.includes(k))) score += 20;
+
+                        // Prefer moderate "card-like" dimensions
+                        if (rect.width >= 200 && rect.width <= 1200) score += 20;
+                        if (rect.height >= 120 && rect.height <= 900) score += 20;
+
+                        if (node.querySelector && node.querySelector('img')) score += 10;
+                        if (node.querySelectorAll && node.querySelectorAll('a').length > 0) score += 5;
+
+                        let cur = node;
+                        let inPlacement = false;
+                        while (cur && cur !== document.body) {
+                            if (placementIds.has(cur.id)) {
+                                inPlacement = true;
+                                break;
+                            }
+                            cur = cur.parentElement;
+                        }
+                        if (inPlacement) score += 10;
+                        if (isPositionVariant && inPlacement) score += 20;
+
+                        return { score, rect, inPlacement };
+                    };
+
+                    for (const textNode of textNodes) {
+                        let cur = textNode;
+                        for (let depth = 0; depth < 8 && cur; depth++) {
+                            const { score, rect } = scoreNode(cur);
+                            if (score > bestScore) {
+                                bestScore = score;
+                                best = rect
+                                    ? {
+                                        x: Math.round(rect.left),
+                                        y: Math.round(rect.top),
+                                        width: Math.round(rect.width),
+                                        height: Math.round(rect.height)
+                                    }
+                                    : null;
+                            }
+                            cur = cur.parentElement;
+                        }
+                    }
+
+                    return best;
+                }
+            """, {"targetText": self.target_text, "isPositionVariant": is_position_variant})
+
+            if not result:
+                return None
+
+            return {
+                "x": int(result["x"]),
+                "y": int(result["y"]),
+                "width": int(result["width"]),
+                "height": int(result["height"]),
+                "method": "target_text_generic",
+                "text_match": self.target_text[:80],
+                "variant": html_filename,
+            }
+        except Exception as e:
+            self.logger.error(f"target_text_generic failed: {e}")
+            return None
 
     def detect_by_order_variant(self, page, html_filename: str) -> Optional[Dict]:
         """Handle order_first/middle/last variants: select card at given index by text or ASIN."""
