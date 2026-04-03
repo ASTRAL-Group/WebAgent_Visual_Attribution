@@ -16,16 +16,16 @@
 <table>
 <tr>
 <td width="33%" valign="top">
-**🔬 First Systematic Study**<br/>
-We present the **first controlled evaluation** of how visual UI attributes shape web-agent decision-making, filling a critical gap beyond adversarial robustness research.
+<strong>🔬 First Systematic Study</strong><br/>
+We present the <strong>first controlled evaluation</strong> of how visual UI attributes shape web-agent decision-making, filling a critical gap beyond adversarial robustness research.
 </td>
 <td width="33%" valign="top">
-**⚙️ VAF Pipeline**<br/>
-A three-stage framework — **Variant Generation → Browsing Simulation → Dual Evaluation** — enabling reproducible, scalable measurement of any visual attribute’s influence.
+<strong>⚙️ VAF Pipeline</strong><br/>
+A three-stage framework — <strong>Variant Generation → Browsing Simulation → Dual Evaluation</strong> — enabling reproducible, scalable measurement of any visual attribute’s influence.
 </td>
 <td width="33%" valign="top">
-**📊 Actionable Findings**<br/>
-Across **48 variants, 5 websites, 4 agents**: background color contrast, item size, position, and card clarity dominate agent behavior; font and text color matter far less.
+<strong>📊 Actionable Findings</strong><br/>
+Across <strong>48 variants, 5 websites, 4 agents</strong>: background color contrast, item size, position, and card clarity dominate agent behavior; font and text color matter far less.
 </td>
 </tr>
 </table>
