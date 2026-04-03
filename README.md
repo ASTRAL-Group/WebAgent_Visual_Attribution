@@ -29,6 +29,14 @@ Across <strong>48 variants, 5 websites, 4 agents</strong>: background color cont
 </tr>
 </table>
 
+## Method Overview
+
+Starting from a real-world webpage, we simulate viewport-based browsing with a web agent on the **original** page, generate **semantics-preserving visual variants**, and compare how prompts and actions (e.g., scroll vs. click) shift until **click verification** on the target item.
+
+<p align="center">
+<img src="image.png" width="100%" alt="VAF method overview: original-site browsing with user prompt and agent observation; variants generation from the full webpage; variant-site browsing where visual changes (e.g., background color) alter the agent’s decision; click verification on the target item." />
+</p>
+
 ---
 
 ## About this repository
