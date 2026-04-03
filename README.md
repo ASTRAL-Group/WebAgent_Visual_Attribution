@@ -1,6 +1,42 @@
-# WebAgent Visual Attribution
+<div align="center">
+
+# How do Visual Attributes Influence Web Agents?
+<h3>A Comprehensive Evaluation of User Interface Design Factors</h3>
+<a href="https://c1arayu.github.io/">Kuai Yu</a><sup>2</sup> · <a href="https://openreview.net/profile?id=%7ENaicheng_Yu1">Naicheng Yu</a><sup>3</sup> · <a href="https://rookiehb.github.io/">Han Wang</a><sup>1</sup> · <a href="https://yangrui2015.github.io/">Rui Yang</a><sup>1</sup> · <a href="https://www.huan-zhang.com/">Huan Zhang</a><sup>1</sup><br/>
+<sup>1</sup> University of Illinois Urbana-Champaign &nbsp;·&nbsp; <sup>2</sup> Columbia University &nbsp;·&nbsp; <sup>3</sup> University of California San Diego<br/><br/>
+<a href="https://arxiv.org/abs/2601.21961"><img src="https://img.shields.io/badge/Paper-arXiv-b31b1b?style=for-the-badge&amp;logo=arxiv&amp;logoColor=white" alt="Paper"/></a>
+<a href="https://c1arayu.github.io/VAFWebAgents.github.io/"><img src="https://img.shields.io/badge/Project-Page-6366f1?style=for-the-badge&amp;logo=googlechrome&amp;logoColor=white" alt="Project Page"/></a>
+<a href="https://github.com/ASTRAL-Group/WebAgent_Visual_Attribution"><img src="https://img.shields.io/badge/Code-GitHub-181717?style=for-the-badge&amp;logo=github&amp;logoColor=white" alt="Code"/></a><br/>
+<em>Official implementation of the <strong>VAF</strong> (Visual Attribute Factors) evaluation pipeline.</em>
+
+</div>
+
+## Contributions
+
+<table>
+<tr>
+<td width="33%" valign="top">
+<strong>🔬 First Systematic Study</strong><br/>
+We present the <strong>first controlled evaluation</strong> of how visual UI attributes shape web-agent decision-making, filling a critical gap beyond adversarial robustness research.
+</td>
+<td width="33%" valign="top">
+<strong>⚙️ VAF Pipeline</strong><br/>
+A three-stage framework — <strong>Variant Generation → Browsing Simulation → Dual Evaluation</strong> — enabling reproducible, scalable measurement of any visual attribute’s influence.
+</td>
+<td width="33%" valign="top">
+<strong>📊 Actionable Findings</strong><br/>
+Across <strong>48 variants, 5 websites, 4 agents</strong>: background color contrast, item size, position, and card clarity dominate agent behavior; font and text color matter far less.
+</td>
+</tr>
+</table>
+
+---
+
+## About this repository
 
 This repository contains pipelines for **web page variant generation** and **visual attribution evaluation**: generating varied web pages (HTML, screenshots, target coordinates) and evaluating how those variants influence model click behavior.
+
+For the paper’s **method overview**, interactive variant browser, and quantitative results, see the [**project page**](https://c1arayu.github.io/VAFWebAgents.github.io/).
 
 ---
 
@@ -103,3 +139,21 @@ For model inference, coordinate comparison, and reports, use the comprehensive p
 | Generate page variants and coordinates | [web_variants_generation/README.md](web_variants_generation/README.md) |
 | Evaluate model click behavior on variants | [comprehensive_pipeline/README.md](comprehensive_pipeline/README.md) |
 | Data/output location | `web_variants_generation/data/` (auto-created by pipeline; contents gitignored) |
+
+---
+
+## Citation
+
+If you find this work useful, please cite:
+
+```bibtex
+@misc{yu2026visualattributesinfluenceweb,
+  title={How do Visual Attributes Influence Web Agents? A Comprehensive Evaluation of User Interface Design Factors},
+  author={Kuai Yu and Naicheng Yu and Han Wang and Rui Yang and Huan Zhang},
+  year={2026},
+  eprint={2601.21961},
+  archivePrefix={arXiv},
+  primaryClass={cs.AI},
+  url={https://arxiv.org/abs/2601.21961}
+}
+```
