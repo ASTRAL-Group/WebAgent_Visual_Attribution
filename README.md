@@ -6,8 +6,7 @@
 <sup>1</sup> University of Illinois Urbana-Champaign &nbsp;·&nbsp; <sup>2</sup> Columbia University &nbsp;·&nbsp; <sup>3</sup> University of California San Diego<br/><br/>
 <a href="https://arxiv.org/abs/2601.21961"><img src="https://img.shields.io/badge/Paper-arXiv-b31b1b?style=for-the-badge&amp;logo=arxiv&amp;logoColor=white" alt="Paper"/></a>
 <a href="https://c1arayu.github.io/VAFWebAgents.github.io/"><img src="https://img.shields.io/badge/Project-Page-6366f1?style=for-the-badge&amp;logo=googlechrome&amp;logoColor=white" alt="Project Page"/></a>
-<a href="https://github.com/ASTRAL-Group/WebAgent_Visual_Attribution"><img src="https://img.shields.io/badge/Code-GitHub-181717?style=for-the-badge&amp;logo=github&amp;logoColor=white" alt="Code"/></a><br/>
-<em>Official implementation of the <strong>VAF</strong> (Visual Attribute Factors) evaluation pipeline.</em>
+<a href="https://github.com/ASTRAL-Group/WebAgent_Visual_Attribution"><img src="https://img.shields.io/badge/Code-GitHub-181717?style=for-the-badge&amp;logo=github&amp;logoColor=white" alt="Code"/></a>
 
 </div>
 
