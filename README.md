@@ -1,56 +1,31 @@
 <div align="center">
 
 # How do Visual Attributes Influence Web Agents?
-
 <h3>A Comprehensive Evaluation of User Interface Design Factors</h3>
-
-<br/>
-
-Kuai Yu<sup>2</sup> · Naicheng Yu<sup>3</sup> · Han Wang<sup>1</sup> · Rui Yang<sup>1</sup> · Huan Zhang<sup>1</sup>
-
-<br/>
-
-<sup>1</sup> University of Illinois Urbana-Champaign &nbsp;·&nbsp; <sup>2</sup> Columbia University &nbsp;·&nbsp; <sup>3</sup> University of California San Diego
-
-<br/><br/>
-
+<a href="https://c1arayu.github.io/">Kuai Yu</a><sup>2</sup> · <a href="https://openreview.net/profile?id=%7ENaicheng_Yu1">Naicheng Yu</a><sup>3</sup> · <a href="https://rookiehb.github.io/">Han Wang</a><sup>1</sup> · <a href="https://yangrui2015.github.io/">Rui Yang</a><sup>1</sup> · <a href="https://www.huan-zhang.com/">Huan Zhang</a><sup>1</sup><br/>
+<sup>1</sup> University of Illinois Urbana-Champaign &nbsp;·&nbsp; <sup>2</sup> Columbia University &nbsp;·&nbsp; <sup>3</sup> University of California San Diego<br/><br/>
 [![Paper](https://img.shields.io/badge/Paper-arXiv-b31b1b?style=for-the-badge&logo=arxiv&logoColor=white)](https://arxiv.org/abs/2601.21961)
 [![Project Page](https://img.shields.io/badge/Project-Page-6366f1?style=for-the-badge&logo=googlechrome&logoColor=white)](https://c1arayu.github.io/VAFWebAgents.github.io/)
-[![Code](https://img.shields.io/badge/Code-GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/ASTRAL-Group/WebAgent_Visual_Attribution)
-[![Data](https://img.shields.io/badge/Data-Demos-0ea5e9?style=for-the-badge)](https://c1arayu.github.io/VAFWebAgents.github.io/)
-
-<br/>
-
+[![Code](https://img.shields.io/badge/Code-GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/ASTRAL-Group/WebAgent_Visual_Attribution)<br/>
 *Official implementation of the **VAF** (Visual Attribute Factors) evaluation pipeline.*
 
 </div>
-
-<br/>
 
 ## Contributions
 
 <table>
 <tr>
 <td width="33%" valign="top">
-
-**🔬 First Systematic Study**
-
+**🔬 First Systematic Study**<br/>
 We present the **first controlled evaluation** of how visual UI attributes shape web-agent decision-making, filling a critical gap beyond adversarial robustness research.
-
 </td>
 <td width="33%" valign="top">
-
-**⚙️ VAF Pipeline**
-
+**⚙️ VAF Pipeline**<br/>
 A three-stage framework — **Variant Generation → Browsing Simulation → Dual Evaluation** — enabling reproducible, scalable measurement of any visual attribute’s influence.
-
 </td>
 <td width="33%" valign="top">
-
-**📊 Actionable Findings**
-
+**📊 Actionable Findings**<br/>
 Across **48 variants, 5 websites, 4 agents**: background color contrast, item size, position, and card clarity dominate agent behavior; font and text color matter far less.
-
 </td>
 </tr>
 </table>
